@@ -172,11 +172,11 @@ def measure_cuckoo_filter(items, step):
         sample_items = random.sample(items, n)
 
         # Measure the insertion performance of the Cuckoo Filter
-        cuckoo_filter = CuckooFilter(capacity=2*n, fingerprint_size=13)  # Parameters from Fan et al.'s paper
-        # start_time = time.time()
+        # Parameters from Fan et al.'s paper: Cuckoo Filter: Practically Better Than Bloom, CoNEXT 2014
+        # Paper section 5.1 Optimal bucket size. Formula (6) with error rate ε = 0.001, bucket size b = 4, and two candidate buckets per item.
+        cuckoo_filter = CuckooFilter(capacity=2*n, fingerprint_size=13)
         for item in sample_items:
             cuckoo_filter.insert(item)
-        # cuckoo_insert_times.append(time.time() - start_time)
 
         # Measure the lookup performance of the Cuckoo Filter
         start_time = time.time()
@@ -197,10 +197,8 @@ def measure_truncate_filter(items, step):
 
         # Measure the insertion performance of the Truncate Filter
         truncate_filter = TruncateFilter(bit_length=10)
-        # start_time = time.time()
         for item in sample_items:
             truncate_filter.insert(item)
-        # truncate_insert_times.append(time.time() - start_time)
 
         # Measure the lookup performance of the Truncate Filter
         start_time = time.time()
@@ -271,7 +269,8 @@ class HashTable:
         index = self._hash(key)
         return self.table[index]
 
-# Bloom Filter Implementation
+# Bloom Filter Implementation.
+# Modified based on the code at https://www.geeksforgeeks.org/bloom-filters-introduction-and-python-implementation/
 class BloomFilter(object):
 
     '''
@@ -307,8 +306,7 @@ class BloomFilter(object):
         digests = []
         for i in range(self.hash_count):
 
-            # create digest for given item.
-            # i work as seed to mmh3.hash() function
+            # Hash has been changed for identical comparison
             # With different seed, digest created is different
             digest = simple_hash(item, i) % self.size
             digests.append(digest)
