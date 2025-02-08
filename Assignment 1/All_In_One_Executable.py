@@ -151,7 +151,9 @@ def measure_bloom_filter(items, step):
         # sample_items = items[:n]
         sample_items = random.sample(items, n)
 
-        bloom_filter = BloomFilter(items_count=n, fp_prob=0.001) # Item count is expected to be same as the number of IDs
+        # Parameters are set by referring to https://www.geeksforgeeks.org/bloom-filters-introduction-and-python-implementation/
+        # Item count is expected to be same as the number of IDs. Also set False Positive probability as 0.001. 
+        bloom_filter = BloomFilter(items_count=n, fp_prob=0.001)
         for item in sample_items:
             bloom_filter.add(item)
 
@@ -165,6 +167,7 @@ def measure_bloom_filter(items, step):
         percent_done = (i + 1) / total_steps * 100
         print(f"\rBloom Filter Progress: {percent_done:.2f}%", end="")
 
+# Cuckoo filter is imported based on this manual: https://github.com/beaulian/cuckoofilter/tree/master
 def measure_cuckoo_filter(items, step):
     total_steps = len(np.linspace(100, len(items), num=step, dtype=int))  # Total number of steps to complete
     for i, n in enumerate(np.linspace(100, len(items), num=step, dtype=int)):
