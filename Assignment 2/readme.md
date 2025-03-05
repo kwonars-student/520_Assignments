@@ -2,6 +2,9 @@
 
 This document provides an overview of the user parameters used in the program and executable condition.
 
+## Program Location
+All_In_One_Executable.py in Assignment 2 folder
+
 ## Parameter Descriptions
 
 - **max_elements** = 20: 
@@ -14,8 +17,9 @@ This document provides an overview of the user parameters used in the program an
 
 ## Usage
 
-To utilize the user control parameters, follow these steps:
+To utilize the program, follow these steps:
 
 1. Set the `max_elements` to the desired value, ensuring it is not too large.
 2. Adjust the `resolution` according to your preference.
-3. Ensure that the `TestEnv.csv` file is present in the project folder.
+3. Ensure that the `TestEnv.csv` file is present in the project folder. (Given in the folder)
+4. Ensure that all required packages are installed.
