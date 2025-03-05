@@ -14,7 +14,7 @@ This document provides an overview of the user parameters used in the program an
 
 ## Usage
 
-To utilize the user control area parameters, follow these steps:
+To utilize the user control parameters, follow these steps:
 
 1. Set the `max_elements` to the desired value, ensuring it is not too large.
 2. Adjust the `resolution` according to your preference.
